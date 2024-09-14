@@ -1,0 +1,669 @@
+﻿<Window x:Class="Airplane_Reservation_System.Employee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:Airplane_Reservation_System"
+        mc:Ignorable="d"
+        Title="Employee" Height="550" Width="800"
+        WindowStyle = "None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+
+    <Window.Resources>
+        <!--colors-->
+        <SolidColorBrush x:Key="PrimaryBlueColor" Color="#348EF6"/>
+        <SolidColorBrush x:Key="SecondaryBlueColor" Color="#EFF2FF"/>
+        <SolidColorBrush x:Key= "PrimaryTextColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key= "SecondaryTextColor" Color="DarkBlue"/>
+        <SolidColorBrush x:Key= "PrimaryGreyColor" Color="#DDC1D1"/>
+
+        <!--Start: Styles-->
+        <!--Start: Tabitem Style-->
+        <Style x:Key="TabItemStyle" TargetType="TabItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryTextColor}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Margin" Value="0 0 5 0"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Padding" Value="10 10"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid SnapsToDevicePixels="True">
+                            <Border CornerRadius="5"
+                                    Background="#348EF6"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Margin="{TemplateBinding Margin}"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              SnapsToDevicePixels="True"
+                                              RecognizesAccessKey="True"
+                                              Margin="{TemplateBinding Padding}"
+                                              ContentSource="Header"
+                                              Focusable="False"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background"
+                                        Value="{DynamicResource SecondaryBlueColor}"/>
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource PrimaryGreyColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background"
+                                        Value="{DynamicResource PrimaryBlueColor}"/>
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource PrimaryTextColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+        <!--End: Tabitem Style-->
+        <!--End: Styles-->
+    </Window.Resources>
+
+
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="Images\virtual+backdrops-06.jpg"/>
+        </Border.Background>
+
+        <Border CornerRadius="10"
+            BorderThickness="1"
+            Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#181448" Offset="0.75"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="EMPLOYEE"
+                        Foreground="DarkGray"
+                        FontSize="10"
+                        FontFamily="Montserrat"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Margin="10,0,199,0"/>
+
+                    <Button x:Name="btn_minimize1"
+                        BorderThickness="0"
+                        Content="-"
+                        Foreground="White"
+                        FontSize="16"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"
+                        Grid.Column="1"
+                        Click="btn_minimize_click">
+
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#28AEED"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278BEF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="18" Height="18"
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"/>
+
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+
+                    <Button x:Name="btn_close1"
+                        BorderThickness="0"
+                        Content="X"
+                        Foreground="White"
+                        FontSize="16"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"
+                        Grid.Column="2"
+                        Click="btn_close_click">
+
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#C62DAE"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="18" Height="18"
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"/>
+
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+                    <Button x:Name="btn_emphome" Content="Dashboard"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Cursor="Hand" 
+                    Background="{x:Null}"  
+                    BorderBrush="{x:Null}" Click="btn_emphome_Click" Margin="549,5,118,7"/>
+                    <Button x:Name="btn_logout" Content="Logout"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Cursor="Hand" 
+                    Background="{x:Null}"  
+                    BorderBrush="{x:Null}" Click="btn_logout_Click" Margin="653,5,30,7"/>
+
+                </Grid>
+
+
+
+                <TabControl Grid.Row="1" Margin="0,10,10,10">
+                    <TabItem Header="Insert" Style="{DynamicResource TabItemStyle}">
+                        <Grid Background="#181448">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="53*"/>
+                                <ColumnDefinition Width="21*"/>
+                                <ColumnDefinition Width="94*"/>
+                                <ColumnDefinition Width="614*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Employee No" HorizontalAlignment="Left" Margin="41,15,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.ColumnSpan="3"/>
+                            <TextBox x:Name="txt_empno"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="41,44,69,355" Grid.Row="1" Grid.ColumnSpan="3">
+                                <TextBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="Name" HorizontalAlignment="Left" Margin="41,105,0,0" Grid.Row="1" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.ColumnSpan="3"/>
+                            <TextBox x:Name="txt_name"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="40,134,599,262" Grid.Row="1" Grid.ColumnSpan="4">
+                                <TextBox.Background>
+                                    <ImageBrush
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="Username" HorizontalAlignment="Left" Margin="41,193,0,0" Grid.Row="1" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.ColumnSpan="3"/>
+                            <TextBox x:Name="txt_username"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="41,222,598,174" Grid.Row="1" Grid.ColumnSpan="4">
+                                <TextBox.Background>
+                                    <ImageBrush
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="Email" HorizontalAlignment="Left" Margin="60,193,0,0" Grid.Row="1" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="3"/>
+                            <TextBox x:Name="txt_email"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="60,222,411,174" Grid.Row="1" Grid.Column="3">
+                                <TextBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="Password" HorizontalAlignment="Left" Margin="40,295,0,0" Grid.Row="1" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.ColumnSpan="3"/>
+                            <Label Content="Confirm Password" HorizontalAlignment="Left" Margin="59,295,0,0" Grid.Row="1" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="3"/>
+                            <PasswordBox x:Name="txt_password"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="39,324,600,72" Grid.Row="1" Grid.ColumnSpan="4">
+                                <PasswordBox.Background>
+                                    <ImageBrush
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </PasswordBox.Background>
+
+                            </PasswordBox>
+                            <PasswordBox x:Name="txt_cpassword"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="59,324,412,72" Grid.Row="1" Grid.Column="3">
+                                <PasswordBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </PasswordBox.Background>
+
+                            </PasswordBox>
+                            <TextBox x:Name="txt_idno"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="321,44,150,355" Grid.Row="1" Grid.Column="3">
+                                <TextBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <TextBox x:Name="txt_tp"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="321,134,150,262" Grid.Row="1" Grid.Column="3">
+                                <TextBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="ID No" HorizontalAlignment="Left" Margin="321,20,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="3"/>
+                            <Label Content="Phone number" HorizontalAlignment="Left" Margin="321,105,0,0" Grid.Row="1" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="3"/>
+                            <RadioButton x:Name="rbn_male" Content="Male" HorizontalAlignment="Left" Margin="321,236,0,0" Grid.Row="1" VerticalAlignment="Top" Background="#FFFFFEFE" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="3"/>
+                            <RadioButton x:Name="rbn_female" Content="Female" HorizontalAlignment="Left" Margin="463,236,0,0" Grid.Row="1" VerticalAlignment="Top" Background="#FFFFFEFE" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" RenderTransformOrigin="0.505,0.111" Grid.Column="3"/>
+                            <Label Content="Gender" HorizontalAlignment="Left" Margin="321,189,0,0" Grid.Row="1" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="3"/>
+                            <Button x:Name="btn_insert"
+                                BorderThickness="0"
+                                Content="INSERT"
+                                Foreground="White"
+                                FontSize="16"
+                                FontFamily="Montserrat"
+                                Cursor="Hand"
+                                Click="btn_insert_click" Margin="321,327,43,10" Grid.Row="1" Grid.Column="3">
+
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="#462AD8"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#C62DAE"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Width="150" Height="40"
+                                            CornerRadius="20"
+                                            Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+
+                            </Button>
+
+
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Update" Style="{DynamicResource TabItemStyle}">
+                        <Grid Background="#181448">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="13*"/>
+                                <ColumnDefinition Width="378*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Employee No" HorizontalAlignment="Left" Margin="15,44,0,0" VerticalAlignment="Top" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <TextBox x:Name="txt_uempno"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="14,73,684,358" Grid.Column="1">
+                                <TextBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="Name" HorizontalAlignment="Left" Margin="14,134,0,0" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <TextBox x:Name="txt_uname"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="14,163,599,265" Grid.Column="1">
+                                <TextBox.Background>
+                                    <ImageBrush
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="Username" HorizontalAlignment="Left" Margin="15,219,0,0" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <TextBox x:Name="txt_uusername"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="15,251,598,177" Grid.Column="1">
+                                <TextBox.Background>
+                                    <ImageBrush
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="Email" HorizontalAlignment="Left" Margin="202,219,0,0" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <TextBox x:Name="txt_uemail"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="202,251,411,177" Grid.Column="1">
+                                <TextBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="Password" HorizontalAlignment="Left" Margin="15,311,0,0" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <Label Content="Confirm Password" HorizontalAlignment="Left" Margin="201,311,0,0" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <PasswordBox x:Name="txt_upassword"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="13,340,600,88" Grid.Column="1">
+                                <PasswordBox.Background>
+                                    <ImageBrush
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </PasswordBox.Background>
+
+                            </PasswordBox>
+                            <PasswordBox x:Name="txt_ucpassword"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="201,342,412,88" Grid.Column="1">
+                                <PasswordBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </PasswordBox.Background>
+
+                            </PasswordBox>
+                            <TextBox x:Name="txt_uidno"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="463,73,150,358" Grid.Column="1">
+                                <TextBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <TextBox x:Name="txt_utp"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="463,163,150,265" Grid.Column="1">
+                                <TextBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Label Content="ID No" HorizontalAlignment="Left" Margin="463,40,0,0" VerticalAlignment="Top" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <Label Content="Phone number" HorizontalAlignment="Left" Margin="463,130,0,0" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <RadioButton x:Name="rbn_umale" Content="Male" HorizontalAlignment="Left" Margin="463,270,0,0" VerticalAlignment="Top" Background="#FFFFFEFE" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <RadioButton x:Name="rbn_ufemale" Content="Female" HorizontalAlignment="Left" Margin="605,270,0,0" VerticalAlignment="Top" Background="#FFFFFEFE" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" RenderTransformOrigin="0.505,0.111" Grid.Column="1"/>
+                            <Label Content="Gender" HorizontalAlignment="Left" Margin="463,215,0,0" VerticalAlignment="Top"  Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Grid.Column="1"/>
+                            <Button x:Name="btn_update"
+                                BorderThickness="0"
+                                Content="UPDATE"
+                                Foreground="White"
+                                FontSize="16"
+                                FontFamily="Montserrat"
+                                Cursor="Hand"
+                                Click="btn_update_click" Margin="463,342,43,67" Grid.Column="1">
+
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="#462AD8"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#C62DAE"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Width="150" Height="40"
+                                            CornerRadius="20"
+                                            Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+
+                            </Button>
+
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Delete" Style="{DynamicResource TabItemStyle}">
+                        <Grid Background="#181448">
+                            <Label Content="Employee No" HorizontalAlignment="Center" Margin="0,175,0,0" VerticalAlignment="Top" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat"/>
+                            <TextBox x:Name="txt_dempno"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Foreground="White"
+                                CaretBrush="LightGray"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0,0,0,1"
+                                VerticalContentAlignment="Center"
+                                Padding="20,0,0,0" Margin="362,204,362,227">
+                                <TextBox.Background>
+                                    <ImageBrush 
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                            <Button x:Name="btn_delete"
+                                BorderThickness="0"
+                                Content="DELETE"
+                                Foreground="White"
+                                FontSize="16"
+                                FontFamily="Montserrat"
+                                Cursor="Hand"
+                                Click="btn_delete_click" Margin="266,282,266,127">
+
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="#462AD8"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#C62DAE"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Width="150" Height="40"
+                                            CornerRadius="20"
+                                            Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+
+                            </Button>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="View" Style="{DynamicResource TabItemStyle}">
+                        <Grid Background="#181448"/>
+                    </TabItem>
+                </TabControl>
+
+            </Grid>
+        </Border>
+    </Border>
+
+
+</Window>
